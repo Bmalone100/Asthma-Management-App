@@ -3,13 +3,15 @@
     package="com.example.fypasthmaapp">
 
     <application
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FYPAsthmaApp"
-        android:allowBackup="true"
-        android:fullBackupContent="@xml/backup_descriptor">
+        android:theme="@style/Theme.FYPAsthmaApp">
+        <activity android:name=".Triggers" />
+        <activity android:name=".Status" />
         <activity android:name=".HomePage" />
         <activity android:name=".MainActivity">
             <intent-filter>

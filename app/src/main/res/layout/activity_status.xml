@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/coordinator_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".Status">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:onClick="onClickSignIn"
         app:layout_anchor="@+id/linearLayout"
         app:layout_anchorGravity="center">
 
@@ -21,36 +21,12 @@
             android:textAlignment="center"
             android:textSize="40sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/sign_out"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.225" />
 
-        <Button
-            android:id="@+id/sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="46dp"
-            android:layout_marginTop="124dp"
-            android:onClick="onClickSignIn"
-            android:text="@string/sign_in"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.062"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/sign_out"
-            android:layout_width="154dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="124dp"
-            android:onClick="onClickSignOut"
-            android:text="@string/sign_out"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.077"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/display_name"
@@ -64,38 +40,52 @@
             app:layout_constraintTop_toBottomOf="@+id/banner" />
 
         <Button
-            android:id="@+id/Status"
+            android:id="@+id/good"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="240dp"
-            android:onClick="onClickStatus"
-            android:text="@string/how_are_you_feeling"
+            android:layout_marginTop="132dp"
+            android:text="@string/feeling_good"
+            app:layout_constraintBottom_toTopOf="@+id/fair"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintHorizontal_bias="0.237"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner" />
+            app:layout_constraintTop_toBottomOf="@+id/banner"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/home"
+            android:id="@+id/fair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="332dp"
-            android:onClick="onClickHome"
-            android:text="@string/home"
+            android:layout_marginTop="220dp"
+            android:text="@string/feeling_fair"
+            app:layout_constraintBottom_toTopOf="@+id/bad"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintHorizontal_bias="0.229"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner" />
+            app:layout_constraintTop_toBottomOf="@+id/banner"
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/bad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="148dp"
-            android:onClick="onClickTrigger"
-            android:text="@string/update_triggers"
+            android:layout_marginBottom="300dp"
+            android:text="@string/not_well"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.087"
+            app:layout_constraintHorizontal_bias="0.211"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/banner"
+            app:layout_constraintVertical_bias="0.915" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/date"
+            app:layout_constraintEnd_toStartOf="@+id/display_name"
+            app:layout_constraintHorizontal_bias="0.396"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner" />
 

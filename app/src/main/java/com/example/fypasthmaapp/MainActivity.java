@@ -1,45 +1,47 @@
 package com.example.fypasthmaapp;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+
+import com.example.fypasthmaapp.databaseHelper;
 
 
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 123;
     private static final String TAG = "Login";
+    private ArrayList<FirebaseUser> userList = new ArrayList<>();
+    private SQLiteDatabase db;
+    //FirebaseDatabase db;
+    //DatabaseReference myRef;
+    //databaseHelper dbHelper = new databaseHelper(getContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mAuth = FirebaseAuth.getInstance();
         FirebaseAuth.AuthStateListener mAuthListener = firebaseAuth -> {
             Log.e(TAG, "Authentication state changed.");
@@ -86,7 +88,11 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 assert user != null;
-                showPopupMessage("Sign in successful: " + "displayName=" + user.getDisplayName() );
+                String id = user.getUid();
+                String name = user.getDisplayName();
+                String email = user.getEmail();
+                User aUser = new User(id, name, email);
+                writeNewUser(aUser);
             } else {
                 if (response == null) {
                     showPopupMessage("Sign in cancelled!");
@@ -131,7 +137,59 @@ public class MainActivity extends AppCompatActivity {
             display_name.setText(R.string.user);
             display_name.setVisibility(View.INVISIBLE);
             signOut.setVisibility(View.INVISIBLE);
+        }
+    }
+    /**
+     This method
+     */
+    /*public void writeNewUser(String name, String email) {
+        // Write a message to the database
+        db = FirebaseDatabase.getInstance();
+        myRef = db.getReference("Users");
+        String id = myRef.push().getKey();
+        User aUser = new User(id, name, email);
+        myRef.child(id).setValue(aUser);
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
 
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+        userList.add(aUser);
+        String username = aUser.getName();
+        showPopupMessage(username + ": Added to database");
+        }*/
+    public void writeNewUser(User aUser) {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(!userList.contains(user)) {
+            // Gets the data repository in write mode
+            db= (new databaseHelper(this)).getWritableDatabase();
+            // Create a new map of values, where column names are the keys
+            ContentValues values = new ContentValues();
+            values.put(UserContract.UserEntry._ID, aUser.getId());
+            values.put(UserContract.UserEntry._NAME, aUser.getName());
+            values.put(UserContract.UserEntry._EMAIL, aUser.getEmail());
+            //Array of users to prevent duplicate entries
+            userList.add(user);
+            // Insert the new row, returning the primary key value of the new row
+            long newRowId = db.insert(UserContract.UserEntry.TABLE_NAME, null, values);
+            if (newRowId == -1) {
+                Log.d(TAG, "writeNewUser: Insert into database failed.");
+            } else {
+                Log.d(TAG, "writeNewUser: Insert into database succeeded.");
+            }
+        }else{
+            Log.d(TAG, "writeNewUser: User already written to database.");
         }
     }
     /**
@@ -142,4 +200,20 @@ public class MainActivity extends AppCompatActivity {
                 .signOut(this)
                 .addOnCompleteListener(task -> showPopupMessage("Sign-out completed."));
     }
+
+    public void onClickStatus(View view) {
+        Intent statusIntent = new Intent(this, Status.class);
+        startActivity(statusIntent);
+    }
+
+    public void onClickHome(View view) {
+        Intent homeIntent = new Intent(this, HomePage.class);
+        startActivity(homeIntent);
+    }
+
+    public void onClickTrigger(View view) {
+        Intent triggerIntent = new Intent(this, Triggers.class);
+        startActivity(triggerIntent);
+    }
+
 }

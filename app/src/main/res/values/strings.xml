@@ -6,4 +6,15 @@
     <string name="airway">Airway</string>
     <string name="user">User</string>
     <string name="welcome">Welcome</string>
+    <string name="how_are_you_feeling">How are you feeling?</string>
+    <string name="feeling_good">Feeling good</string>
+    <string name="feeling_fair">Feeling fair</string>
+    <string name="not_well">Not well</string>
+    <string name="home">Home</string>
+    <string name="element_text">element</string>
+    <string name="update_triggers">Update Triggers</string>
+    <string name="description">description</string>
+    <string name="Trigger">Trigger</string>
+    <string name="change">change</string>
+    <string name="date">Date</string>
 </resources>
