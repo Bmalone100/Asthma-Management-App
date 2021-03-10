@@ -9,10 +9,6 @@ public class User {
     private String status;
     ArrayList<User> users = new ArrayList<>();
 
-    public User(String aId, String status) {
-        this.id = aId;
-        this.status = status;
-    }
     public User(String aId, String aName, String aEmail) {
         this.id = aId;
         this.name = aName;
@@ -34,9 +30,6 @@ public class User {
     public void setId(){
         String aId = id;
     }
-
-    public String getStatus() {return status;}
-    public void setStatus() {String aStatus = status;}
 
     public void updateUsers(User auser){
         users.add(auser);

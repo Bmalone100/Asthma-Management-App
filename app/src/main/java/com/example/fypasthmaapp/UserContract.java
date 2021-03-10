@@ -9,6 +9,7 @@ public final class UserContract {
     /* Inner class that defines the table contents */
     public static class UserEntry implements BaseColumns {
         public static final String TABLE_NAME = "Users";
+        public static final int _ID_KEY = 0;
         public static final String _ID = "id";
         public static final String _NAME = "name";
         public static final String _EMAIL = "email";
@@ -16,6 +17,7 @@ public final class UserContract {
 
     public static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE IF NOT EXISTS " + UserEntry.TABLE_NAME + " (" +
+                    UserEntry._ID_KEY + "INTEGER PRIMARY KEY AUTOINCREMENT" +
                     UserEntry._ID + " TEXT, " +
                     UserEntry._NAME + " TEXT, " +
                     UserEntry._EMAIL + " TEXT)";

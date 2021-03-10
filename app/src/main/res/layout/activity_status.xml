@@ -17,7 +17,7 @@ tools:context=".Status">
             android:id="@+id/banner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/airway"
+            android:text="@string/asthma_manager"
             android:textAlignment="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -43,40 +43,31 @@ tools:context=".Status">
             android:id="@+id/good"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="132dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="148dp"
             android:text="@string/feeling_good"
-            app:layout_constraintBottom_toTopOf="@+id/fair"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.237"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/banner" />
 
         <Button
             android:id="@+id/fair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="220dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="50dp"
             android:text="@string/feeling_fair"
-            app:layout_constraintBottom_toTopOf="@+id/bad"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.229"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/good" />
 
         <Button
             android:id="@+id/bad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="300dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="50dp"
             android:text="@string/not_well"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.211"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner"
-            app:layout_constraintVertical_bias="0.915" />
+            app:layout_constraintTop_toBottomOf="@+id/fair" />
 
         <TextView
             android:id="@+id/date"

@@ -36,17 +36,12 @@ public class Status extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         TextView textViewName = findViewById(R.id.display_name);
+        assert user != null;
         textViewName.setText(user.getDisplayName());
-
-
     }
 
     public void OnClickHandleStatus(View view) {
 
     }
 
-    public void writeUserStatus(String userId, String status) {
-        User user = new User(userId, status);
-        mDatabase.child("User Status").child(userId).setValue(user);
-    }
 }

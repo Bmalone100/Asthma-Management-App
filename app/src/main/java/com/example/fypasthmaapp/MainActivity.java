@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Login";
     private ArrayList<FirebaseUser> userList = new ArrayList<>();
     private SQLiteDatabase db;
-    //FirebaseDatabase db;
-    //DatabaseReference myRef;
     //databaseHelper dbHelper = new databaseHelper(getContext());
 
     @Override
@@ -140,35 +138,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     /**
-     This method
+     This method writes a user to the sql database
      */
-    /*public void writeNewUser(String name, String email) {
-        // Write a message to the database
-        db = FirebaseDatabase.getInstance();
-        myRef = db.getReference("Users");
-        String id = myRef.push().getKey();
-        User aUser = new User(id, name, email);
-        myRef.child(id).setValue(aUser);
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d(TAG, "Value is: " + value);
-            }
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-        userList.add(aUser);
-        String username = aUser.getName();
-        showPopupMessage(username + ": Added to database");
-        }*/
     public void writeNewUser(User aUser) {
         FirebaseUser user = mAuth.getCurrentUser();
         if(!userList.contains(user)) {
@@ -200,18 +172,31 @@ public class MainActivity extends AppCompatActivity {
                 .signOut(this)
                 .addOnCompleteListener(task -> showPopupMessage("Sign-out completed."));
     }
-
+    /**
+     This method sends the user to the status activity
+     */
     public void onClickStatus(View view) {
         Intent statusIntent = new Intent(this, Status.class);
         startActivity(statusIntent);
     }
-
+    /**
+     This method sends the user to the home activity
+     */
     public void onClickHome(View view) {
         Intent homeIntent = new Intent(this, HomePage.class);
         startActivity(homeIntent);
     }
-
+    /**
+     This method sends the user to the trigger activity
+     */
     public void onClickTrigger(View view) {
+        Intent triggerViewIntent = new Intent(this, userInputTrigger.class);
+        startActivity(triggerViewIntent);
+    }
+    /**
+     This method sends the user to the trigger input activity
+     */
+    public void onClickTriggerView(View view) {
         Intent triggerIntent = new Intent(this, Triggers.class);
         startActivity(triggerIntent);
     }

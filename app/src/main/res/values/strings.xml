@@ -17,4 +17,11 @@
     <string name="Trigger">Trigger</string>
     <string name="change">change</string>
     <string name="date">Date</string>
+    <string name="asthma_manager">Asthma Manager</string>
+    <string name="edit_me">edit me</string>
+    <string name="enter_a_factor_that_aggravates_your_asthma">Enter a factor that aggravates your asthma</string>
+    <string name="agg">Input a factor that aggravates your asthma</string>
+    <string name="submit">Submit</string>
+    <string name="view_triggers">View Triggers</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
