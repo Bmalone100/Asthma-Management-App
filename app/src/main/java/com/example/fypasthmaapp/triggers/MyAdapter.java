@@ -1,8 +1,7 @@
-package com.example.fypasthmaapp;
+package com.example.fypasthmaapp.triggers;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -17,18 +16,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.fypasthmaapp.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
-import static android.view.KeyEvent.KEYCODE_ENTER;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     ArrayList<String> triggers;
     String message = "";
     SQLiteDatabase db;
-    triggerDbHelper dbHelper;
+    TriggerDbHelper dbHelper;
 
     public MyAdapterListener onClickListener;
 
@@ -86,12 +86,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         viewHolder.editMe.setOnKeyListener(((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 //Add db update
-                String username = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+                String username = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName();
                 String change = viewHolder.rowView.getText().toString();
                 String insert = viewHolder.editMe.getText().toString();
 
                 //db = (new triggerDbHelper(v.getContext())).getReadableDatabase();
-                db = (new triggerDbHelper(v.getContext())).getWritableDatabase();
+                db = (new TriggerDbHelper(v.getContext())).getWritableDatabase();
                 String query = "SELECT * From triggers WHERE trg = ?";
                 Log.d(TAG, "onKey: query returns: " + query);
                 Cursor csr = db.rawQuery(query, new String[]{change});
@@ -122,7 +122,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             Log.d(TAG, "onClick: Clicked bind 2");
             //Add db delete
             String change = viewHolder.rowView.getText().toString();
-            db = (new triggerDbHelper(v.getContext())).getWritableDatabase();
+            db = (new TriggerDbHelper(v.getContext())).getWritableDatabase();
             String query = "SELECT * From triggers WHERE trg = ?";
             Cursor csr = db.rawQuery(query, new String[]{change});
             csr.moveToFirst();

@@ -1,7 +1,6 @@
 package com.example.fypasthmaapp;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -13,6 +12,10 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.example.fypasthmaapp.reminders.Reminder;
+import com.example.fypasthmaapp.triggers.Triggers;
+import com.example.fypasthmaapp.triggers.UserInputTrigger;
+import com.example.fypasthmaapp.user.User;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
 import com.firebase.ui.auth.IdpResponse;
@@ -24,8 +27,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-
-import com.example.fypasthmaapp.databaseHelper;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser user = mAuth.getCurrentUser();
         if(!userList.contains(user)) {
             // Gets the data repository in write mode
-            db= (new databaseHelper(this)).getWritableDatabase();
+            db= (new DatabaseHelper(this)).getWritableDatabase();
             // Create a new map of values, where column names are the keys
             ContentValues values = new ContentValues();
             values.put("name", aUser.getName());
@@ -182,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
      This method sends the user to the trigger activity
      */
     public void onClickTrigger(View view) {
-        Intent triggerViewIntent = new Intent(this, userInputTrigger.class);
+        Intent triggerViewIntent = new Intent(this, UserInputTrigger.class);
         startActivity(triggerViewIntent);
     }
     /**
@@ -191,6 +192,14 @@ public class MainActivity extends AppCompatActivity {
     public void onClickTriggerView(View view) {
         Intent triggerIntent = new Intent(this, Triggers.class);
         startActivity(triggerIntent);
+    }
+
+    /**
+     This method sends the user to the reminder activity
+     */
+    public void onClickSetReminder(View view) {
+        Intent reminderIntent = new Intent(this, Reminder.class);
+        startActivity(reminderIntent);
     }
 
     //change this later

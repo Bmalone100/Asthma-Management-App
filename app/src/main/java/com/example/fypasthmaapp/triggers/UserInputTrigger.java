@@ -1,10 +1,8 @@
-package com.example.fypasthmaapp;
+package com.example.fypasthmaapp.triggers;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,21 +10,21 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
-import com.google.android.material.snackbar.Snackbar;
+import com.example.fypasthmaapp.MainActivity;
+import com.example.fypasthmaapp.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class userInputTrigger extends AppCompatActivity {
+public class UserInputTrigger extends AppCompatActivity {
     static String EXTRA_MESSAGE = "";
     private static final String TAG = "userInput";
     String message = "";
 
     SQLiteDatabase db;
+    TriggerDbHelper dbHelper;
     private ArrayList<String> triggerList = new ArrayList<>();
 
     @Override
@@ -60,11 +58,12 @@ public class userInputTrigger extends AppCompatActivity {
     }
 
     public void saveTrigger() {
+        db = (new TriggerDbHelper(this)).getWritableDatabase();
         String username = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName();
         EditText editText = findViewById(R.id.simpleEditText);
 
         if (!(triggerList.contains(message))) {
-            db = (new triggerDbHelper(this)).getWritableDatabase();
+            db = (new TriggerDbHelper(this)).getWritableDatabase();
             ContentValues values = new ContentValues();
             values.put("user", username);
             values.put("trg", editText.getText().toString());

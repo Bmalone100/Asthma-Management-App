@@ -67,11 +67,11 @@
             android:id="@+id/Status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="292dp"
             android:onClick="onClickStatus"
             android:text="@string/how_are_you_feeling"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.101"
+            app:layout_constraintHorizontal_bias="0.106"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner" />
 
@@ -79,11 +79,11 @@
             android:id="@+id/home"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="332dp"
+            android:layout_marginTop="372dp"
             android:onClick="onClickHomechange"
             android:text="@string/home"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.065"
+            app:layout_constraintHorizontal_bias="0.061"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner" />
 
@@ -91,7 +91,7 @@
             android:id="@+id/triggerUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="132dp"
             android:onClick="onClickTrigger"
             android:text="@string/update_triggers"
             app:layout_constraintEnd_toEndOf="parent"
@@ -104,12 +104,24 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="33dp"
-            android:layout_marginTop="148dp"
+            android:layout_marginTop="132dp"
             android:onClick="onClickTriggerView"
             android:text="@string/view_triggers"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.578"
             app:layout_constraintStart_toEndOf="@+id/triggerUpdate"
+            app:layout_constraintTop_toBottomOf="@+id/banner" />
+
+        <Button
+            android:id="@+id/reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="212dp"
+            android:onClick="onClickSetReminder"
+            android:text="@string/set_reminder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.066"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

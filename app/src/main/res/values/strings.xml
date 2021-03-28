@@ -26,4 +26,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="set_reminder">Set Reminder</string>
+    <string name="cancel">Cancel</string>
+    <string name="set">SET</string>
+    <string name="message">Message</string>
 </resources>
