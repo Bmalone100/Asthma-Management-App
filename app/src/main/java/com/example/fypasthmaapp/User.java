@@ -6,7 +6,6 @@ public class User {
     private String name;
     private String email;
     private String id;
-    private String status;
     ArrayList<User> users = new ArrayList<>();
 
     public User(String aId, String aName, String aEmail) {

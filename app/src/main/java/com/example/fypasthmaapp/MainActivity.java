@@ -148,13 +148,12 @@ public class MainActivity extends AppCompatActivity {
             db= (new databaseHelper(this)).getWritableDatabase();
             // Create a new map of values, where column names are the keys
             ContentValues values = new ContentValues();
-            values.put(UserContract.UserEntry._ID, aUser.getId());
-            values.put(UserContract.UserEntry._NAME, aUser.getName());
-            values.put(UserContract.UserEntry._EMAIL, aUser.getEmail());
+            values.put("name", aUser.getName());
+            values.put("email", aUser.getEmail());
             //Array of users to prevent duplicate entries
             userList.add(user);
             // Insert the new row, returning the primary key value of the new row
-            long newRowId = db.insert(UserContract.UserEntry.TABLE_NAME, null, values);
+            long newRowId = db.insert("users", null, values);
             if (newRowId == -1) {
                 Log.d(TAG, "writeNewUser: Insert into database failed.");
             } else {
@@ -180,13 +179,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(statusIntent);
     }
     /**
-     This method sends the user to the home activity
-     */
-    public void onClickHome(View view) {
-        Intent homeIntent = new Intent(this, HomePage.class);
-        startActivity(homeIntent);
-    }
-    /**
      This method sends the user to the trigger activity
      */
     public void onClickTrigger(View view) {
@@ -201,4 +193,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(triggerIntent);
     }
 
+    //change this later
+    /**
+     This method sends the user to the home activity
+     */
+    public void onClickHomechange(View view) {
+        Intent homeIntent = new Intent(this, HomePage.class);
+        startActivity(homeIntent);
+    }
 }

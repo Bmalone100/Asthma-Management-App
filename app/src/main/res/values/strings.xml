@@ -24,4 +24,6 @@
     <string name="submit">Submit</string>
     <string name="view_triggers">View Triggers</string>
     <string name="title_activity_maps">Map</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
