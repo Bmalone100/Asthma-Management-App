@@ -1,4 +1,4 @@
-package com.example.fypasthmaapp;
+package com.example.fypasthmaapp.user;
 
 import android.content.ContentValues;
 import android.content.Context;

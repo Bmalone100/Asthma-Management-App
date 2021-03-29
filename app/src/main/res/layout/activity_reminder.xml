@@ -10,9 +10,9 @@
         android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:hint="@string/message"
-        android:inputType="text"
-        android:autofillHints="" />
+        android:inputType="text" />
 
     <TimePicker
         android:id="@+id/timePicker"
@@ -21,14 +21,20 @@
         android:layout_marginTop="20dp" />
 
     <Button
-        android:id="@+id/setBtn"
+        android:id="@+id/set"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/set" />
     <Button
-        android:id="@+id/cancelBtn"
+        android:id="@+id/cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/confirm" />
 
 </LinearLayout>

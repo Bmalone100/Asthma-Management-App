@@ -10,6 +10,8 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.fypasthmaapp.MainActivity;
+
 import static androidx.core.app.NotificationCompat.PRIORITY_DEFAULT;
 
 
@@ -24,7 +26,7 @@ public class AlertReceiver extends BroadcastReceiver {
         String message = intent.getStringExtra("message");
 
         // Call MainActivity when notification is tapped.
-        Intent mainIntent = new Intent(context, Reminder.class);
+        Intent mainIntent = new Intent(context, MainActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
 
         // NotificationManager

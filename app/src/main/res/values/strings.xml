@@ -30,4 +30,10 @@
     <string name="cancel">Cancel</string>
     <string name="set">SET</string>
     <string name="message">Message</string>
+    <string name="maps">Maps</string>
+    <string name="address">Enter Address, City or Zip Code</string>
+    <string name="magnify">magnify</string>
+    <string name="gps">gps</string>
+    <string name="map">Map</string>
+    <string name="confirm">Confirm</string>
 </resources>

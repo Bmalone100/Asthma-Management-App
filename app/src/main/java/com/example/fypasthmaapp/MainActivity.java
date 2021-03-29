@@ -12,9 +12,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.example.fypasthmaapp.maps.MapHandler;
 import com.example.fypasthmaapp.reminders.Reminder;
 import com.example.fypasthmaapp.triggers.Triggers;
 import com.example.fypasthmaapp.triggers.UserInputTrigger;
+import com.example.fypasthmaapp.user.DatabaseHelper;
 import com.example.fypasthmaapp.user.User;
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -202,12 +204,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(reminderIntent);
     }
 
-    //change this later
     /**
-     This method sends the user to the home activity
+     This method sends the user to the mapHandler activity
      */
-    public void onClickHomechange(View view) {
-        Intent homeIntent = new Intent(this, HomePage.class);
-        startActivity(homeIntent);
+    public void onClickMapHandler(View view) {
+        Intent mapIntent = new Intent(this, MapHandler.class);
+        startActivity(mapIntent);
     }
+
 }
