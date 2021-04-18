@@ -1,13 +1,11 @@
 package com.example.fypasthmaapp.reminders;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
 import android.os.Bundle;
 
 import com.example.fypasthmaapp.MainActivity;
 import com.example.fypasthmaapp.R;
-import com.example.fypasthmaapp.Status;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -25,11 +23,16 @@ import static com.example.fypasthmaapp.R.id.cancel;
 import static com.example.fypasthmaapp.R.id.confirm;
 import static com.example.fypasthmaapp.R.id.set;
 
-
+/**
+ * Initialise a pending intent to be received as an alarm
+ */
 public class Reminder extends AppCompatActivity implements View.OnClickListener {
     private int notificationId = 1;
     String message = "";
 
+    /**
+     * Creating buttons and listeners for the activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +47,9 @@ public class Reminder extends AppCompatActivity implements View.OnClickListener 
         confirmBtn.setOnClickListener(this);
     }
 
+    /**
+     * Initialising the alarm and the events for the listeners
+     */
     @Override
     public void onClick(View v) {
         Button setBtn = findViewById(R.id.set);

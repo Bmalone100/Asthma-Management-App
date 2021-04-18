@@ -4,7 +4,7 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-tools:context=".Status">
+tools:context=".symptoms.Symptoms">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -27,7 +27,6 @@ tools:context=".Status">
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.225" />
 
-
         <TextView
             android:id="@+id/display_name"
             android:layout_width="89dp"
@@ -38,36 +37,6 @@ tools:context=".Status">
             app:layout_constraintHorizontal_bias="0.807"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/banner" />
-
-        <Button
-            android:id="@+id/good"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="148dp"
-            android:text="@string/feeling_good"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/banner" />
-
-        <Button
-            android:id="@+id/fair"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/feeling_fair"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/good" />
-
-        <Button
-            android:id="@+id/bad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/not_well"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fair" />
 
         <TextView
             android:id="@+id/date"
@@ -81,4 +50,18 @@ tools:context=".Status">
             app:layout_constraintTop_toBottomOf="@+id/banner" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/symptomRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:paddingTop="160dp"
+        app:layout_anchor="@+id/linearLayout"
+        app:layout_anchorGravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

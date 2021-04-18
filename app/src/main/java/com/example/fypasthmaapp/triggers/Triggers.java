@@ -13,24 +13,30 @@ import android.view.View;
 
 import com.example.fypasthmaapp.MainActivity;
 import com.example.fypasthmaapp.R;
+import com.example.fypasthmaapp.symptoms.Symptoms;
 
 import java.util.ArrayList;
 
+
+/**
+ * Activity for viewing the contents of the recyclerView
+ */
 public class Triggers extends AppCompatActivity implements MyAdapter.MyAdapterListener {
     private static final String TAG = "Trigger";
     RecyclerView recyclerView;
     private static ArrayList<String> triggers = new ArrayList<>();
-    String message = "";
     SQLiteDatabase db;
-    TriggerDbHelper dbHelper;
 
+
+    /**
+     * Read from the database and populate the view
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_triggers);
         recyclerView = findViewById(R.id.recycler);
-        //setTriggers();
-        //Clear list before reading
+        //Clear list before reading to avoid multiple reads
         triggers.clear();
         triggerDatabaseRead();
         MyAdapter myAdapter = new MyAdapter(triggers, this);
@@ -38,6 +44,9 @@ public class Triggers extends AppCompatActivity implements MyAdapter.MyAdapterLi
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    /**
+     * Database read
+     */
     private void triggerDatabaseRead() {
         String query = "SELECT trg From triggers";
         db = (new TriggerDbHelper(this)).getReadableDatabase();
@@ -52,36 +61,22 @@ public class Triggers extends AppCompatActivity implements MyAdapter.MyAdapterLi
         csr.close();
     }
 
+        /**
+        * Button listener
+        */
         @Override
         public void editBtnOnClick(View v, int position) {
             Log.d(TAG, "onClick: I am clicked");
         }
 
+        /**
+        * Button listener
+        */
         @Override
         public void deleteBtnOnClick(View v, int position) {
             Log.d(TAG, "onClick: I am clicked too");
         }
 
-    //Method to set Trigger value using intent retrived string - replaced with db read
-    private void setTriggers() {
-        Intent intent = getIntent();
-        message = intent.getStringExtra(UserInputTrigger.EXTRA_MESSAGE);
-        Log.d(TAG, "This is the string: " + message);
-        triggers.add(message);
-        //Let's remove duplicates
-        for(int i =0;i<triggers.size()-1;i++){
-            if(triggers.get(i).equals(triggers.get(i+1))){
-                triggers.remove(triggers.get(i));
-            }else{
-                Log.d(TAG, "setTriggers: No duplicates");
-            }
-
-        }
-    }
-
-    /**
-     This method sends the user to the home activity
-     */
     public void onClickHome(View view) {
         Intent homeIntent = new Intent(this, MainActivity.class);
         startActivity(homeIntent);

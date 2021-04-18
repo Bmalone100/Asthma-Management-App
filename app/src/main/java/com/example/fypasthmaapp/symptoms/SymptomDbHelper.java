@@ -1,47 +1,38 @@
-package com.example.fypasthmaapp.user;
+package com.example.fypasthmaapp.symptoms;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
-import android.widget.EditText;
 
-import androidx.annotation.Nullable;
-
-import com.firebase.ui.auth.AuthUI;
-import com.google.firebase.auth.FirebaseAuth;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 /**
- * Database helper class for Users' user login data
+ * Database helper class for Symptoms user data
  */
-public class DatabaseHelper extends SQLiteOpenHelper {
+class SymptomDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 2;
-    public static final String DATABASE_NAME = "UserEntry.db";
+    public static final String DATABASE_NAME = "symptom.db";
 
-    public DatabaseHelper(Context context) {
+    public SymptomDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
     public void onCreate(SQLiteDatabase db) {
-        String sqlStmt= "CREATE TABLE IF NOT EXISTS users(" +
+        String sqlStmt= "CREATE TABLE IF NOT EXISTS symptoms(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "name TEXT, " +
-                "email     TEXT)";
+                "user TEXT, " +
+                "symptom TEXT)";
         db.execSQL(sqlStmt);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // This database is only a cache for online data, so its upgrade policy is
         // to simply to discard the data and start over
-        String sqlStmt = "DROP TABLE IF EXISTS users";
+        String sqlStmt = "DROP TABLE IF EXISTS symptoms";
         db.execSQL(sqlStmt);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
     }
+
 }

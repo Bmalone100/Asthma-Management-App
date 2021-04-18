@@ -14,7 +14,9 @@ import com.example.fypasthmaapp.MainActivity;
 
 import static androidx.core.app.NotificationCompat.PRIORITY_DEFAULT;
 
-
+/**
+ * Prepares a notification to be fired for a given alert from a pending intent
+ */
 public class AlertReceiver extends BroadcastReceiver {
     private static final String CHANNEL_ID = "CHANNEL_SAMPLE";
 

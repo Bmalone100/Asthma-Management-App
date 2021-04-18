@@ -12,7 +12,9 @@ import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-
+/**
+ * Database helper class for Triggers user data
+ */
 class TriggerDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     public static final int DATABASE_VERSION = 2;

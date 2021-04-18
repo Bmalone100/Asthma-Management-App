@@ -14,6 +14,8 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.example.fypasthmaapp.maps.MapHandler;
 import com.example.fypasthmaapp.reminders.Reminder;
+import com.example.fypasthmaapp.symptoms.Symptoms;
+import com.example.fypasthmaapp.symptoms.UserInputSymptom;
 import com.example.fypasthmaapp.triggers.Triggers;
 import com.example.fypasthmaapp.triggers.UserInputTrigger;
 import com.example.fypasthmaapp.user.DatabaseHelper;
@@ -30,15 +32,19 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-
+/**
+ * The main menu screen for the user and Firebase user authentication handling
+ */
 public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private static final int RC_SIGN_IN = 123;
     private static final String TAG = "Login";
     private ArrayList<FirebaseUser> userList = new ArrayList<>();
     private SQLiteDatabase db;
-    //databaseHelper dbHelper = new databaseHelper(getContext());
 
+    /**
+     * Initialising the firebase UI components
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method takes a string and creates a snackbar pop up message.
+     * Takes a string and creates a snackbar pop up message.
      */
     private void showPopupMessage(String message) {
         Log.e(TAG, message);
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method builds the sign in methods and sends the user to sign in.
+     * Builds the sign in methods and sends the user to sign in.
      */
     public void onClickSignIn(View view) {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
@@ -79,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method catches the result of sign in.
+     * Catches the result of sign in.
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -109,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method checks for the status of the current user and updates UI.
+     * Checks for the status of the current user and updates UI.
      */
     @Override
     public void onStart() {
@@ -120,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * This method changes the displayed strings containing user details.
+     * Changes the displayed strings containing user details.
      */
     private void updateUI(FirebaseUser currentUser) {
         FirebaseUser user = mAuth.getCurrentUser();
@@ -141,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     /**
-     This method writes a user to the sql database
+     Writes a user to the sql database
      */
 
     public void writeNewUser(User aUser) {
@@ -167,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     /**
-     This method signs out the current user and the strings will update back to default.
+     Signs out the current user and the strings will update back to default.
      */
     public void onClickSignOut(View view) {
         AuthUI.getInstance()
@@ -175,21 +181,29 @@ public class MainActivity extends AppCompatActivity {
                 .addOnCompleteListener(task -> showPopupMessage("Sign-out completed."));
     }
     /**
-     This method sends the user to the status activity
+     Sends the user to the status activity
      */
-    public void onClickStatus(View view) {
-        Intent statusIntent = new Intent(this, Status.class);
+    public void onClickSymptomUpdate(View view) {
+        Intent statusIntent = new Intent(this, UserInputSymptom.class);
+        startActivity(statusIntent);
+    }
+
+    /**
+     Sends the user to the status activity
+     */
+    public void onClickSymptoms(View view) {
+        Intent statusIntent = new Intent(this, Symptoms.class);
         startActivity(statusIntent);
     }
     /**
-     This method sends the user to the trigger activity
+     Sends the user to the trigger activity
      */
     public void onClickTrigger(View view) {
         Intent triggerViewIntent = new Intent(this, UserInputTrigger.class);
         startActivity(triggerViewIntent);
     }
     /**
-     This method sends the user to the trigger input activity
+     Sends the user to the trigger input activity
      */
     public void onClickTriggerView(View view) {
         Intent triggerIntent = new Intent(this, Triggers.class);
@@ -197,7 +211,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     This method sends the user to the reminder activity
+     Sends the user to the reminder activity
      */
     public void onClickSetReminder(View view) {
         Intent reminderIntent = new Intent(this, Reminder.class);
@@ -205,7 +219,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     This method sends the user to the mapHandler activity
+     Sends the user to the mapHandler activity
      */
     public void onClickMapHandler(View view) {
         Intent mapIntent = new Intent(this, MapHandler.class);

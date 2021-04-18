@@ -30,14 +30,22 @@ public class MapHandler extends AppCompatActivity {
         }
     }
 
+
+    /**
+     * Set on click listener for button
+     */
     private void init(){
-        Button btnMap = (Button) findViewById(R.id.btnMap);
+        Button btnMap = findViewById(R.id.btnMap);
         btnMap.setOnClickListener(view -> {
             Intent intent = new Intent(MapHandler.this, MapsActivity.class);
             startActivity(intent);
         });
     }
 
+
+    /**
+     * Run checks for google services availability
+     */
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 

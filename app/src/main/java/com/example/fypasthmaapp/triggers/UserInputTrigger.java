@@ -18,15 +18,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.Objects;
 
+//Activity for handling user input
 public class UserInputTrigger extends AppCompatActivity {
     static String EXTRA_MESSAGE = "";
     private static final String TAG = "userInput";
     String message = "";
-
     SQLiteDatabase db;
-    TriggerDbHelper dbHelper;
     private ArrayList<String> triggerList = new ArrayList<>();
 
+
+    /**
+     * Handle keyboard event and button click event for passing user input to Triggers activity.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,11 +55,11 @@ public class UserInputTrigger extends AppCompatActivity {
         EditText editText = findViewById(R.id.simpleEditText);
         message = editText.getText().toString();
         saveTrigger();
-        //Intent intent = new Intent(this, Triggers.class);
-        //intent.putExtra(EXTRA_MESSAGE, message);
-        //startActivity(intent);
     }
 
+    /**
+     * Write user input to the database
+     */
     public void saveTrigger() {
         db = (new TriggerDbHelper(this)).getWritableDatabase();
         String username = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getDisplayName();

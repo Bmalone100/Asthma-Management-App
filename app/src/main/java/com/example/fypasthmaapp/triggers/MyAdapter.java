@@ -24,19 +24,28 @@ import java.util.Objects;
 
 import static android.content.ContentValues.TAG;
 
+/**
+ * Recycler view for displaying and organising information passed by user
+ */
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     ArrayList<String> triggers;
     String message = "";
     SQLiteDatabase db;
-    TriggerDbHelper dbHelper;
 
     public MyAdapterListener onClickListener;
 
+
+    /**
+     * Controls screen contents
+     */
     public MyAdapter(ArrayList<String> dataSet, MyAdapterListener listener) {
         triggers = dataSet;
         onClickListener = listener;
     }
 
+    /**
+     * Holds the contents of the view/screen component
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView rowView;
         private Button editBtn;
@@ -45,7 +54,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         public ViewHolder(final View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
+            //Define click listener for the ViewHolder's View
             rowView = view.findViewById(R.id.changeText);
             editBtn = view.findViewById(R.id.editTrigger);
             editBtn.setVisibility(View.VISIBLE);
@@ -59,6 +68,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     }
 
+    /**
+     * Inflate the layout from a predefined xml file
+     */
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -69,7 +81,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // Return a new holder instance
         return new ViewHolder(triggerView);
     }
-    // Replace the contents of a view (invoked by the layout manager)
+
+    /**
+     * Replace the contents of a view (invoked by the layout manager)
+     */
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         // Get the data model based on position
@@ -82,7 +97,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             viewHolder.editBtn.setVisibility(View.GONE);
             viewHolder.editMe.setVisibility(View.VISIBLE);
         });
-
+        //Database interaction on the viewholder
         viewHolder.editMe.setOnKeyListener(((v, keyCode, event) -> {
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 //Add db update
@@ -90,7 +105,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 String change = viewHolder.rowView.getText().toString();
                 String insert = viewHolder.editMe.getText().toString();
 
-                //db = (new triggerDbHelper(v.getContext())).getReadableDatabase();
                 db = (new TriggerDbHelper(v.getContext())).getWritableDatabase();
                 String query = "SELECT * From triggers WHERE trg = ?";
                 Log.d(TAG, "onKey: query returns: " + query);
@@ -98,7 +112,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 csr.moveToFirst();
                 String trg = csr.getString(csr.getColumnIndex("trg"));
 
-                //db = (new triggerDbHelper(v.getContext())).getWritableDatabase();
                 ContentValues cv = new ContentValues();
                 cv.put("user", username);
                 cv.put("trg", change);
@@ -134,12 +147,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             db.close();
            });
     }
-    // Return the size of your dataset (invoked by the layout manager)
+
+    /**
+     * Return the size of your dataset (invoked by the layout manager)
+     */
     @Override
     public int getItemCount() {
         return triggers.size();
     }
 
+
+    /**
+     * Remove an item from the display
+     */
     public void removeItem(int position) {
         if(!(triggers.isEmpty())) {
             triggers.remove(position);
@@ -149,8 +169,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public interface MyAdapterListener {
 
+    /**
+     * Interface to allow these components to be modified outside of this class
+     */
+    public interface MyAdapterListener {
         void editBtnOnClick(View v, int position);
         void deleteBtnOnClick(View v, int position);
     }
