@@ -110,7 +110,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Toast.makeText(this, "Map is Ready", Toast.LENGTH_SHORT).show();
         Log.d(TAG, "onMapReady: map is ready");
         mMap = googleMap;
-        mMap.setOnPolylineClickListener(this::onPolylineClick);
+        //mMap.setOnPolylineClickListener(this::onPolylineClick);
 
         if (mLocationPermissionsGranted) {
             getDeviceLocation();
@@ -142,7 +142,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 //execute our method for searching
                 geoLocate();
-                calculateDirections(geoLocate(), getDeviceLocation());
+                //calculateDirections(geoLocate(), getDeviceLocation());
             }
 
             return false;
@@ -158,7 +158,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     /**
      * Locate coords and retrieve information
      */
-    private Location geoLocate() {
+    private void geoLocate() {
         Location location = null;
         Log.d(TAG, "geoLocate: geolocating");
 
@@ -183,13 +183,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             location = new Location(String.valueOf(new LatLng(address.getLatitude(), address.getLongitude())));
             Log.d(TAG, "geoLocate: location: " + location);
         }
-        return location;
+        //return location;
     }
 
     /**
      * Get device location, move camera here
      */
-    private Location getDeviceLocation() {
+    private void getDeviceLocation() {
         AtomicReference<Location> currentLocation = new AtomicReference<>();
         Log.d(TAG, "getDeviceLocation: getting the devices current location");
 
@@ -217,7 +217,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } catch (SecurityException e) {
             Log.e(TAG, "getDeviceLocation: SecurityException: " + e.getMessage());
         }
-        return currentLocation.get();
+        //return currentLocation.get();
     }
 
 
@@ -301,7 +301,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
-    private void calculateDirections(Location location, Location origin) {
+    /*private void calculateDirections(Location location, Location origin) {
         Log.d(TAG, "calculateDirections: calculating directions.");
 
         com.google.maps.model.LatLng destination = new com.google.maps.model.LatLng(
@@ -387,5 +387,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 polylineData.getPolyline().setZIndex(0);
             }
         }
-    }
+    }*/
 }

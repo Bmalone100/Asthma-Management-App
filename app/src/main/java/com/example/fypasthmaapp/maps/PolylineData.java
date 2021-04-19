@@ -2,7 +2,9 @@ package com.example.fypasthmaapp.maps;
 
 import com.google.android.gms.maps.model.Polyline;
 import com.google.maps.model.DirectionsLeg;
-
+/**
+ * Class for using polylines for map activity
+ */
 class PolylineData {
     private Polyline polyline;
     private DirectionsLeg leg;

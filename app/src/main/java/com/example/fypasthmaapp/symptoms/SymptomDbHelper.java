@@ -21,7 +21,8 @@ class SymptomDbHelper extends SQLiteOpenHelper {
         String sqlStmt= "CREATE TABLE IF NOT EXISTS symptoms(" +
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "user TEXT, " +
-                "symptom TEXT)";
+                "symptom TEXT," +
+                "date TEXT)";
         db.execSQL(sqlStmt);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

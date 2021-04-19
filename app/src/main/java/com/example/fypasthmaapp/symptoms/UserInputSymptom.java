@@ -8,10 +8,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.fypasthmaapp.MainActivity;
@@ -27,9 +24,7 @@ import java.util.Objects;
  * Activity for user to input their level of symptoms
  */
 public class UserInputSymptom extends AppCompatActivity {
-    static String EXTRA_MESSAGE = "";
     private static final String TAG = "userInput";
-    String message = "";
     SQLiteDatabase db;
     private ArrayList<String> dateEntry = new ArrayList<>();
 
@@ -116,6 +111,7 @@ public class UserInputSymptom extends AppCompatActivity {
             ContentValues values = new ContentValues();
             values.put("user", username);
             values.put("symptom", dataToPass[0]);
+            values.put("date", String.valueOf(dateEntry));
             //Array of users to prevent duplicate entries
             dateEntry.add(currentDate);
             // Insert the new row, returning the primary key value of the new row

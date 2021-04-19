@@ -27,7 +27,6 @@ import static com.example.fypasthmaapp.R.id.set;
  * Initialise a pending intent to be received as an alarm
  */
 public class Reminder extends AppCompatActivity implements View.OnClickListener {
-    private int notificationId = 1;
     String message = "";
 
     /**
@@ -60,6 +59,7 @@ public class Reminder extends AppCompatActivity implements View.OnClickListener 
 
         // Intent
         Intent intent = new Intent(Reminder.this, AlertReceiver.class);
+        int notificationId = 1;
         intent.putExtra("notificationId", notificationId);
         intent.putExtra("message", editText.getText().toString());
 
@@ -82,7 +82,6 @@ public class Reminder extends AppCompatActivity implements View.OnClickListener 
                 startTime.set(Calendar.MINUTE, minute);
                 startTime.set(Calendar.SECOND, 0);
                 long alarmStartTime = startTime.getTimeInMillis();
-
                 // Set Alarm
                 alarmManager.set(AlarmManager.RTC_WAKEUP, alarmStartTime, pendingIntent);
                 Toast.makeText(this, "Done!", Toast.LENGTH_SHORT).show();
